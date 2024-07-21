@@ -5,24 +5,13 @@ import { NextResponse } from 'next/server';
 const prisma = new PrismaClient();
 
 export async function GET(request: Request) {
-    const formData = await request.formData()
-
-    const title = formData.get('title') as string
-
-    if (!title) {
-        return NextResponse.json({ message: 'Title is required' }, { status: 400})
-    }
-
-    const post = await prisma.post.findUnique({
-        where: {
-            title
-        }
+    const posts = await prisma.post.findMany({
     })
 
-    if (post) {
-        return NextResponse.json(post)
+    if (posts && posts.length) {
+        return NextResponse.json(posts)
     }
-
+    
     return NextResponse.json({ message: 'No posts found' }, { status: 400})
 }
 
