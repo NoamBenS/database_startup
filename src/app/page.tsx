@@ -22,9 +22,15 @@ const schema = z.object({
 })
 
 export function UserForm() {
+
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
-  })
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+    },
+  });
 
   const router = useRouter()
 
@@ -39,7 +45,7 @@ export function UserForm() {
 
     const id = response.id
 
-    router.push(`/users/${id}`)
+    router.push(`/api/users/${id}`)
   }
 
   return (
@@ -52,7 +58,7 @@ export function UserForm() {
             <FormItem>
               <FormLabel>name</FormLabel>
               <FormControl>
-                <Input placeholder="noam" {...field} />
+                <Input placeholder="name goes here" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -65,7 +71,7 @@ export function UserForm() {
             <FormItem>
               <FormLabel>email</FormLabel>
               <FormControl>
-                <Input placeholder="noam@gmail.com" {...field} />
+                <Input placeholder="email goes here" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -78,7 +84,7 @@ export function UserForm() {
             <FormItem>
               <FormLabel>phone number</FormLabel>
               <FormControl>
-                <Input placeholder="optional" {...field} />
+                <Input placeholder="phone optionally goes here" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
