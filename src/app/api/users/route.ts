@@ -15,14 +15,17 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-    const { searchParams } = new URL(request.url)
+    const body = await request.json()
+    const name = body.name
+    const email = body.email
+    const phone = body.phone || ''
 
-    const name = searchParams.get('name')
-    const email = searchParams.get('email')
-    const phone = searchParams.get('phone') || ''
+    if (!name) {
+        return NextResponse.json({ message: 'Name is required' }, { status: 400})
+    }
 
-    if (!name || !email) {
-        return NextResponse.json({ message: 'Name and email are required' }, { status: 400})
+    if (!email) {
+        return NextResponse.json({ message: 'Email is required' }, { status: 400})
     }
 
     const emailExists = await prisma.user.findFirst({
@@ -42,6 +45,5 @@ export async function POST(request: Request) {
             phone
         }
     })
-
     return NextResponse.json(user)
 }

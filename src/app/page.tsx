@@ -13,9 +13,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
+import { useRouter } from "next/navigation"
 
 const schema = z.object({
-  username: z.string(),
+  name: z.string(),
   email: z.string().email(),
   phone: z.string().optional(),
 })
@@ -25,8 +26,20 @@ export function UserForm() {
     resolver: zodResolver(schema),
   })
 
-  function onSubmit(data: z.infer<typeof schema>) {
-    console.log(data)
+  const router = useRouter()
+
+  async function onSubmit(data: z.infer<typeof schema>) {
+    const response = await fetch("/api/users",
+      { method: "POST", body: JSON.stringify(data) }
+    ).then((res) => res.json())
+
+    if (response.message) {
+      return
+    }
+
+    const id = response.id
+
+    router.push(`/users/${id}`)
   }
 
   return (
@@ -34,10 +47,10 @@ export function UserForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
-          name="username"
+          name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>username</FormLabel>
+              <FormLabel>name</FormLabel>
               <FormControl>
                 <Input placeholder="noam" {...field} />
               </FormControl>
@@ -82,8 +95,8 @@ export function UserForm() {
 export default function Home() {
   return (
     <main>
-      <div style={{ textAlign: "center", paddingTop: "10%"}}>Account Creation Page</div>
-      <div style={{ paddingTop: "10%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <div style={{ textAlign: "center", paddingTop: "5%" }}>Account Creation Page</div>
+      <div style={{ paddingTop: "2.5%", display: "flex", justifyContent: "center", alignItems: "center" }}>
         <UserForm />
       </div>
     </main>
