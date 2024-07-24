@@ -20,8 +20,12 @@ This page uses a custom Clerk account to store logins. Feel free to substitute t
 > Keys are found in the '.env' file.
 
 Create posts using the user page. This part is stored into a custom database which is stored as a db sqllite file and is managed through prisma.
-> If using a file to store data, place it in the /prisma directory. Otherwise, make sure the url matches up.
+> If using a file to store data, place it in the /prisma directory. Otherwise, make sure the url matches up. Regardless, make sure the format is consistent with the provider listed in the schema.prisma file.
+
 For Files:
+
 `DATABASE_URL="file:[your_file_directory]`
+
 For URLS:
+
 `DATABASE_URL="your_database_url`
