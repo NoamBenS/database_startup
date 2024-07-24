@@ -24,8 +24,8 @@ Create posts using the user page. This part is stored into a custom database whi
 
 For Files:
 
-`DATABASE_URL="file:[your_file_directory]`
+`DATABASE_URL="file:[your_file_directory]"`
 
 For URLS:
 
-`DATABASE_URL="your_database_url`
+`DATABASE_URL="your_database_url"`
