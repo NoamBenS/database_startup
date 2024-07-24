@@ -1,7 +1,8 @@
 // GET, PUT, DELETE
 
 import { PrismaClient, User } from '@prisma/client';
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
+
 
 const prisma = new PrismaClient();
 
@@ -9,7 +10,7 @@ interface query {
     userId: string
 }
 
-export async function GET(request: Request, { params }: { params: query }) {
+export async function GET(request: NextRequest, { params }: { params: query }) {
     const foundUser = await prisma.user.findUnique({
         where: {
             id: parseInt(params.userId)
