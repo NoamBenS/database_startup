@@ -17,7 +17,7 @@ bun dev
 ## Usage
 
 This page uses a custom Clerk account to store logins. Feel free to substitute the authentification keys for your own and attach it to a personal application.
-> Keys are found in the '.env' file.
+> Keys are put into the .env (or .env.local) file. To get keys, generate them for your application on the [Clerk](https://clerk.com/) website.
 
 Create posts using the user page. This part is stored into a custom database which is stored as a db sqllite file and is managed through prisma.
 > If using a file to store data, place it in the /prisma directory. Otherwise, make sure the url matches up. Regardless, make sure the format is consistent with the provider listed in the schema.prisma file.
