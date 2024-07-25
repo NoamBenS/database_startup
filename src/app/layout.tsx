@@ -22,35 +22,36 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <ClerkProvider>
       <html lang="en">
         <body>
           <header>
-          <h3 style={{ textAlign: "center", paddingTop: "5%" }}>Welcome to my page</h3>
-          <br></br>
-          <h1 style={{ textAlign: "center", paddingTop: "5%" }}> This is a simple project that works with next.js, clerk, middleware, and prisma to simulate an extremely simple posting &quot;blog&quot; site.</h1>
-          <SignedOut>
-            <div style={{ textAlign: "center", paddingTop: "5%" }}>
-              <SignInButton>
-                <div style={{ textAlign: "center", paddingTop: "5%" }}>
-                  <Button>Sign In</Button>
-                </div>
-              </SignInButton>
+            <h3 style={{ textAlign: "center", paddingTop: "5%" }}>Welcome to my page</h3>
+            <br></br>
+            <div style={{ display: "flex", justifyContent: "center", alignContent: "center" }}>
+              <h1 style={{ textAlign: "center", paddingTop: "5%", width: "50%" }}> This is a simple project that works with next.js, clerk, middleware, and prisma to simulate an extremely simple posting &quot;blog&quot; site.</h1>
             </div>
-            <div style={{ textAlign: "center", paddingTop: "5%" }}>
-              Or
-              <div style={{ textAlign: "center", paddingTop: "5%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+            <SignedOut>
+              <div style={{ textAlign: "center", paddingTop: "5%" }}>
+                <SignInButton>
+                  <div style={{ textAlign: "center", paddingTop: "5%" }}>
+                    <Button>Sign In / Create Account</Button>
+                  </div>
+                </SignInButton>
               </div>
-            </div>
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
+            </SignedOut>
+            <SignedIn>
+              <main>{children}</main>
+              <div style={{ textAlign: "center", paddingTop: "5%" }}>
+                <UserButton />
+              </div>
+            </SignedIn>
           </header>
-          <main>{children}</main>
         </body>
       </html>
-      </ClerkProvider>
+    </ClerkProvider>
   );
 }
