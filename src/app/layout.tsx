@@ -29,12 +29,12 @@ export default function RootLayout({
       <html lang="en">
         <body>
           <header>
-            <h3 style={{ textAlign: "center", paddingTop: "5%" }}>Welcome to my page</h3>
-            <br></br>
-            <div style={{ display: "flex", justifyContent: "center", alignContent: "center" }}>
-              <h1 style={{ textAlign: "center", paddingTop: "5%", width: "50%" }}> This is a simple project that works with next.js, clerk, middleware, and prisma to simulate an extremely simple posting &quot;blog&quot; site.</h1>
-            </div>
             <SignedOut>
+              <h3 style={{ textAlign: "center", paddingTop: "5%" }}>Welcome to my page</h3>
+              <br></br>
+              <div style={{ display: "flex", justifyContent: "center", alignContent: "center" }}>
+                <h1 style={{ textAlign: "center", paddingTop: "5%", width: "50%" }}> This is a simple project that works with next.js, clerk, middleware, and prisma to simulate an extremely simple posting &quot;blog&quot; site.</h1>
+              </div>
               <div style={{ textAlign: "center", paddingTop: "5%" }}>
                 <SignInButton>
                   <div style={{ textAlign: "center", paddingTop: "5%" }}>
@@ -45,7 +45,7 @@ export default function RootLayout({
             </SignedOut>
             <SignedIn>
               <main>{children}</main>
-              <div style={{ textAlign: "center", paddingTop: "5%" }}>
+              <div style={{ position: "absolute", top: "0", right: "0", paddingTop: "5%", paddingRight: "5%" }}>
                 <UserButton />
               </div>
             </SignedIn>
