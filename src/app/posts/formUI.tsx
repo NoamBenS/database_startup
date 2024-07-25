@@ -81,7 +81,7 @@ export function UserForm() {
   )
 }
 
-export default function FormUI() {
+export default function FormUI({ userId }: { userId: string }) {
   return (
     <main>
       <div style={{ textAlign: "center", paddingTop: "5%" }}>

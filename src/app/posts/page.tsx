@@ -4,6 +4,9 @@ import FormUI from "./formUI";
 
 export default async function Home() {
   const { userId } = auth();
+  if (!userId) {
+    return null;
+  }
   const user = await currentUser();
 
   return (
@@ -12,7 +15,7 @@ export default async function Home() {
       <div style={{ textAlign: "center", paddingTop: "5%" }}>
       </div>
       <div style= {{ display: "flex", justifyContent: "center"}}>
-        <FormUI/>
+        <FormUI userId={userId}/>
       </div>
 
     </main>
